@@ -85,6 +85,7 @@ input[type="color"]{
     border-radius: 12px;
     height:60px;
     border:none;
+    background-color: #EAE7DC;
 }
 #slide::-moz-range-thumb {
     width: 20px;
