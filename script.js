@@ -7,14 +7,11 @@ const slide=document.getElementById("slide");
 const grid=document.querySelector(".grid");
 slide.addEventListener("mousemove",changeInfo);
 slide.onchange=()=>reSizeGrid(slide.value);
-const gridElements=document.querySelectorAll(".grid-lement");
-gridElements.onclick=()=>changeColor();
-function changeColor(){
-    gridElements.forEach(el=>function(){
-        el.style.backgroundColor="red";
-    })
-}
-let DEFAULT_SIZE=8;
+
+const DEFAULT_SIZE=8;
+const DEFAULTMODE="color";
+let currentMode;
+let currentColor;
 function reSizeGrid(size){
     grid.innerHTML="";
     grid.style.gridTemplateColumns=`repeat(${size},1fr)`;
@@ -24,10 +21,14 @@ function reSizeGrid(size){
 function changeInfo(){
     info.textContent=`${slide.value} x ${slide.value}`;
 }
+function changeColor(e){
+    e.target.style.backgroundColor="black";
+}
 function setupGrid(size){
     for(let i=0;i!=size**2;i++){
         const gridElement=document.createElement("div");
         gridElement.classList.add("grid-element");
+        gridElement.addEventListener("mouseover",changeColor);
         grid.appendChild(gridElement);
     }
 }
